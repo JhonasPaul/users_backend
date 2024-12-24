@@ -1,22 +1,30 @@
 package com.springboot.backend.jonathan.usersapp.service;
 
 import com.springboot.backend.jonathan.usersapp.entity.User;
+import com.springboot.backend.jonathan.usersapp.entity.dtos.UsuarioDto;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 
 import java.util.List;
 import java.util.Optional;
 
 public interface UserService {
 
-    List<User> findAll();
 
-    Page<User> paginarUsuarios(Pageable pageable);
+    List<UsuarioDto> findAll();
+
+
+    Page<UsuarioDto> paginarUsuarios(Pageable pageable);
+    Page<User> paginarUsuarios1(Pageable pageable);
 
     /*Optional ayuda a evitar el NullPinterException*/
-    Optional<User> findById(Long id);
+    Optional<UsuarioDto> findById(Long id);
 
-    User save(User user);
+    ResponseEntity<?> save(User user);
 
     void delete(Long id);
+
+    ResponseEntity<?> update(Long id, UsuarioDto usuarioDto);
 }
