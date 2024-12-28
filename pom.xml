@@ -66,6 +66,7 @@
             <artifactId>spring-boot-starter-validation</artifactId>
         </dependency>
 
+        <!--MAPPER-->
         <dependency>
             <groupId>org.mapstruct</groupId>
             <artifactId>mapstruct</artifactId>
@@ -81,6 +82,8 @@
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
         </dependency>
+
+        <!--SEGURIDAD-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
