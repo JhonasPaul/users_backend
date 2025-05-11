@@ -90,4 +90,18 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
    }
 
+   /*para probar si los campos se serializan adecuadamente*/
+   /*@GetMapping("mock")
+    public ResponseEntity<User>listarDto(){
+       User user = new User();
+       user.setId(1L);
+       user.setName("Raul");
+       user.setLastname("Flores");
+       user.setEmail("Raul@hotmail.com");
+       user.setUsername("raul");
+       user.setPassword("123123");
+
+       return ResponseEntity.ok(user);
+   }*/
+
 }

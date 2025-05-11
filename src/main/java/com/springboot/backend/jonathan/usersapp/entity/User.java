@@ -2,6 +2,8 @@ package com.springboot.backend.jonathan.usersapp.entity;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.springboot.backend.jonathan.usersapp.common.entity.BaseId;
+import com.springboot.backend.jonathan.usersapp.common.entity.Persona;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -19,21 +21,9 @@ import java.util.List;
 @Setter
 @Entity
 @Table(name = "users")
-public class User implements Serializable {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class User extends Persona implements Serializable {
+    /*el id lo hereda de la clase abstracta BaseId*/
 
-    @NotBlank
-    private String name;
-
-    @NotBlank
-    private String lastname;
-
-    @Column(unique = true)
-    @NotEmpty
-    @Email
-    private String email;
 
 
     @Column(unique = true)
@@ -53,6 +43,30 @@ public class User implements Serializable {
             uniqueConstraints = {@UniqueConstraint(columnNames = {"user_id", "role_id"})}
     )
     private List<Role> roles;
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public List<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
+    }
 
     public User() {
         this.roles = new ArrayList<>();
