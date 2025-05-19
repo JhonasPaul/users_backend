@@ -1,17 +1,13 @@
-package com.springboot.backend.jonathan.usersapp.entity;
+package com.springboot.backend.jonathan.usersapp.user.entity;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.springboot.backend.jonathan.usersapp.common.entity.BaseId;
 import com.springboot.backend.jonathan.usersapp.common.entity.Persona;
+import com.springboot.backend.jonathan.usersapp.rol.entity.Role;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.validator.constraints.UniqueElements;
 
 import java.io.Serializable;
 import java.util.ArrayList;

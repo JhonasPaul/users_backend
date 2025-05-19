@@ -1,8 +1,7 @@
-package com.springboot.backend.jonathan.usersapp.controller;
+package com.springboot.backend.jonathan.usersapp.user.controller;
 
-import com.springboot.backend.jonathan.usersapp.entity.User;
-import com.springboot.backend.jonathan.usersapp.entity.dtos.UsuarioDto;
-import com.springboot.backend.jonathan.usersapp.service.UserService;
+import com.springboot.backend.jonathan.usersapp.user.dtos.UsuarioDto;
+import com.springboot.backend.jonathan.usersapp.user.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -11,7 +10,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.*;
 
@@ -49,11 +47,11 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<?> create(@Valid @RequestBody User user, BindingResult result) {
+    public ResponseEntity<?> create(@Valid @RequestBody UsuarioDto usuarioDto, BindingResult result) {
         if (result.hasErrors()) {
             return validation(result);
         }
-        return ResponseEntity.status(HttpStatus.CREATED).body(userService.save(user));
+        return ResponseEntity.status(HttpStatus.CREATED).body(userService.save(usuarioDto));
     }
 
 

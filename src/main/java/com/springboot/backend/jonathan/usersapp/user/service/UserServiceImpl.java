@@ -1,9 +1,9 @@
-package com.springboot.backend.jonathan.usersapp.service;
+package com.springboot.backend.jonathan.usersapp.user.service;
 
-import com.springboot.backend.jonathan.usersapp.entity.User;
-import com.springboot.backend.jonathan.usersapp.entity.dtos.UsuarioDto;
-import com.springboot.backend.jonathan.usersapp.entity.mapper.UsuarioMapper;
-import com.springboot.backend.jonathan.usersapp.repository.UserRepository;
+import com.springboot.backend.jonathan.usersapp.user.entity.User;
+import com.springboot.backend.jonathan.usersapp.user.dtos.UsuarioDto;
+import com.springboot.backend.jonathan.usersapp.user.mapper.UsuarioMapper;
+import com.springboot.backend.jonathan.usersapp.user.repository.UserRepository;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -60,16 +60,18 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public ResponseEntity<?> save(@Valid User user) {
+    public ResponseEntity<?> save(@Valid UsuarioDto usuarioDto) {
         Map<String, String> errors = new HashMap<>();
-        if (userRepository.existsByUsername(user.getUsername())) {
+        if (userRepository.existsByUsername(usuarioDto.getUsername())) {
             errors.put("error", "username ya existe");
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errors);
         }
-        if (userRepository.existsByEmail(user.getEmail())) {
+        if (userRepository.existsByEmail(usuarioDto.getEmail())) {
             errors.put("error", "email ya existe");
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errors);
         }
+        User user = usuarioMapper.toUser(usuarioDto);
+
         User userSave = userRepository.save(user);
         return ResponseEntity.status(HttpStatus.CREATED).body(usuarioMapper.toUsuarioDto(userSave));
     }
@@ -106,7 +108,8 @@ public class UserServiceImpl implements UserService {
         User updatedUser = userRepository.save(usuarioEncontrado);
 
         // Mapear a DTO y devolver la respuesta
-        return ResponseEntity.status(HttpStatus.OK).body(usuarioMapper.toUsuarioDto(updatedUser));
+        UsuarioDto usuarioDto1 = usuarioMapper.toUsuarioDto(updatedUser);
+        return ResponseEntity.status(HttpStatus.OK).body(usuarioDto1);
     }
 
 
