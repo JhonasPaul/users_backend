@@ -1,0 +1,3 @@
+INSERT INTO users (name, lastname, username, dni, password, email) VALUES ('Pool', 'Ortiz', 'pool', 52213659,'123123', 'pool@mail.com');
+INSERT INTO users (name, lastname, username, dni, password, email) VALUES ('Josefa', 'Doe', 'admin', 6332669, '123123', 'josefa@mail.com');
+INSERT INTO users (name, lastname, username, dni, password, email) VALUES ('John Juan', 'Doe Roe', 'john', 32256487,'321321', 'john@email.com');

@@ -1,0 +1,15 @@
+services:
+  user-backend:
+    image: svc-usuarios
+    networks:
+      - spring
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+#      puerto contenedor: puerto host
+      - "8001:8080"
+    container_name: user
+networks:
+  spring:
+    external: true
